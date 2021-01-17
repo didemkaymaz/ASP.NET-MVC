@@ -1,0 +1,75 @@
+﻿@using proje_a.ViewModel;
+@model kayipTblViewModel
+
+@{
+    ViewBag.Title = "Kayıp Düzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kayıp Düzenle</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="width:30%; margin-top:5%">
+        <div align="center">
+            <p><h2>MUTLULUK YERİ    <img src="~/image/pati.jpg" width="40px" alt="Örnek Resim" /></h2></p>
+        </div>
+        <hr />
+        <h2 style="text-align:center">Kayıp İlanını Düzenle</h2>
+        @using (Html.BeginForm("DüzenlemeKaydet", "kayip", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_ad, "", new { @class = "form-control", @placeholder = "Adı" })
+                @Html.ValidationMessageFor(m => m.kayip_ad, "", new { @class = "badge badge-danger" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_turu, "", new { @class = "form-control", @placeholder = "Kayıp Türü" })
+                @Html.ValidationMessageFor(m => m.kayip_turu, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_cinsiyet, "", new { @class = "form-control", @placeholder = "Cinsiyeti" })
+                @Html.ValidationMessageFor(m => m.kayip_cinsiyet, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_yas, "", new { @class = "form-control", @placeholder = "Yaşı" })
+                @Html.ValidationMessageFor(m => m.kayip_yas, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_renk, "", new { @class = "form-control", @placeholder = "Rengi" })
+                @Html.ValidationMessageFor(m => m.kayip_renk, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_il, "", new { @class = "form-control", @placeholder = "Kaybolduğu Şehir" })
+                @Html.ValidationMessageFor(m => m.kayip_il, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m=>m.kayitDüzenle.kayip_tarihi, "", new { @class = "form-control", @placeholder = "Kaybolduğu Tarih(yyyy/aa/gg)" })
+                @Html.ValidationMessageFor(m => m.kayip_tarihi, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.kayitDüzenle.kayip_aciklama, "", new { @class = "form-control", @placeholder = "Açıklama" })
+                @Html.ValidationMessageFor(m => m.kayip_aciklama, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block btn-dark">Başvuru Düzenle</button>
+            </div>
+            @Html.HiddenFor(m => m.kayitDüzenle.kayip_id)
+        }
+
+    </div>
+
+</body>
+</html>

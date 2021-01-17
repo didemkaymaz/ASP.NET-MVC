@@ -1,0 +1,106 @@
+﻿@using proje_a.ViewModel;
+@model kayipTblViewModel
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giriş</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+</head>
+@*<style>
+    .card-img-top {
+        height: 200px;
+        width: 300px;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+        .card-img-top:hover {
+            width: 500px;
+            height: 300px;
+        }
+</style>*@
+<body style="background-image:url(../image/arkaplanblur.jpeg); ">
+    <br />
+
+    <table class="table table-striped table-dark">
+        <font></font>
+        <thead>
+            <font></font>
+            <tr>
+                <font></font>
+                <th><div align="center">İlan veren</th>
+                <font></font>
+                <th><div align="center">İl</th>
+                <font></font>
+                <th><div align="center">Kaybolma Tarihi</th>
+                <font></font>
+                <th><div align="center">Cinsi</th>
+                <font></font>
+                <th><div align="center">Yaşı</th>
+                <font></font>
+                <th><div align="center">Renk</th>
+                <font></font>
+
+
+            </tr>
+            <font></font>
+        </thead>
+        <font></font>
+        <tbody style="color: black">
+            <font></font>
+            @foreach (var kayip in Model.kayipDetay)
+            {
+            <td class="table-warning"><div align="center">#@kayip.kullanici_adi</td>
+            <font></font>
+            <td class="table-success"><div align="center">@kayip.kayip_il</td>
+            <font></font>
+            <td class="table-secondary"><div align="center">@kayip.kayip_tarihi</td>
+            <font></font>
+            <td class="table-danger"><div align="center">@kayip.kayip_turu</td>
+            <font></font>
+            <td class="table-info"><div align="center">@kayip.kayip_yas</td>
+            <font></font>
+
+            <td class="table-warning"><div align="center">@kayip.kayip_renk</td>
+            <font></font>
+            // <td class="bg-danger"><img src="~/UploadedFiles/@kayip.image_name" height="250px" width="450px" /></td>
+            <font></font>
+            <div class="card-columns">
+                <div class="card-body">
+                    <h5 class="card-title"><b>İSMİ: </b>@kayip.kayip_ad</h5>
+                    <h5> <p class="card-text">@kayip.kayip_aciklama</p></h5>
+                    @*<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>*@
+                </div>
+                <img class="card-img-top" src="~/UploadedFiles/@kayip.image_name" alt="Card image cap">
+            </div>
+            <br />
+
+
+
+        }
+            </tbody>
+            <font></font>
+        </table><font></font>
+        <form action="/Contact/iletisim">
+            <button type="submit" class="btn btn-danger btn-lg btn-block">ONU GÖRDÜM!</button>
+        </form> <br />
+        <form>
+            <p>Kayıp ilanını yazdırın!</p>
+            <input type="button" value="Yazdır" onClick="window.print()" style="background-color:antiquewhite; border-radius:5px">
+        </form>
+        @*<a href="/Contact/iletisim">
+            <input type="button" value="ONU GÖRDÜM!" /></a>*@
+
+
+    </body>
+</html>

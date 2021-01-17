@@ -1,0 +1,90 @@
+﻿@model proje_a.Models.EntityFramework.uyeTbl
+@{
+    ViewBag.Title = "Yeni Kullanıcı";
+    Layout = null;
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kayıt Ol</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="background-image: url(../image/arkaplanblur.jpeg);
+             background-size: 100%; ">
+
+    <div class="container" style="width: 40%;
+        height: 95%;
+        background-color: black;
+        border-radius: 20px;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+        opacity: 0.8;">
+
+        <div style="background-color: black;
+        opacity: 0.9;
+        margin-top: 5%">
+            <div align="center">
+                <p><h1 style="color:honeydew"></h1> <img src="~/image/logo.png" width="400px" height="100px" /></p>
+            </div>
+        </div>
+        <hr />
+        <h2 style="text-align:center; color:white">Bize Katıl!</h2>
+        @using (Html.BeginForm("uyelik", "Uye", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(m => m.uye_ad)
+                @Html.TextBoxFor(m => m.uye_ad, "", new { @class = "form-control", @placeholder = "Ad" })
+                @Html.ValidationMessageFor(m => m.uye_ad, "", new { @class = "badge badge-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.uye_soyad)
+                @Html.TextBoxFor(m => m.uye_soyad, "", new { @class = "form-control", @placeholder = "Soyad" })
+                @Html.ValidationMessageFor(m => m.uye_soyad, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.kullanici_adi)
+                @Html.TextBoxFor(m => m.kullanici_adi, "", new { @class = "form-control", @placeholder = "Kullanıcı Adı" })
+                @Html.ValidationMessageFor(m => m.kullanici_adi, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.uye_sehir)
+                @Html.TextBoxFor(m => m.uye_sehir, "", new { @class = "form-control", @placeholder = "Şehir" })
+                @Html.ValidationMessageFor(m => m.uye_sehir, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(m => m.uye_telno)*@
+                @Html.TextBoxFor(m => m.uye_telno, "", new { @class = "form-control", @placeholder = "Telefon No", @Value = "" })
+                @Html.ValidationMessageFor(m => m.uye_telno, "", new { @class = "badge badge-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.uye_mail)
+                @Html.TextBoxFor(m => m.uye_mail, "", new { @class = "form-control", @placeholder = "E-mail" })
+                @Html.ValidationMessageFor(m => m.uye_mail, "", new { @class = "badge badge-danger" })
+                @if (ViewBag.error != null)
+                {
+                    <span class="badge badge-danger">@ViewBag.Mesaj</span>
+                }
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.uye_sifre)
+                @Html.PasswordFor(m => m.uye_sifre, new { @class = "form-control", @placeholder = "Şifre" })
+                @Html.ValidationMessageFor(m => m.uye_sifre, "", new { @class = "badge badge-danger" })
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block btn-dark">Kayıt Ol</button>
+            </div>
+
+        }
+    </div>
+</body>
+</html>

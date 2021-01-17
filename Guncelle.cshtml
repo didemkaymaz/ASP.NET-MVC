@@ -1,0 +1,39 @@
+﻿@model proje_a.Models.EntityFramework.uyeTbl
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>iletisim</title>
+</head>
+<br />
+<header class="masthead">
+    <img src="/image/update.jpg" style="width:100%; height:350px" />
+</header>
+<body>
+   
+    @using (Html.BeginForm("Guncelle", "Uye", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p><b>Kullanıcı Adı:</b> </p>
+        @Html.TextBoxFor(a => a.uye_ad, new { @class = "form-control" })
+        <p><b>Kullanıcı Soyadı:</b></p>
+        @Html.TextBoxFor(a => a.uye_soyad, new { @class = "form-control" })
+        <p><b>Kullanıcı Mail:</b></p>
+
+        @Html.TextBoxFor(a => a.uye_mail, new { @class = "form-control" })
+        <p><b>Kullanıcı Tel No:</b></p>
+
+        @Html.TextBoxFor(a => a.uye_telno, new { @class = "form-control" })
+        <br />
+        <button type="submit" class="btn btn-group btn-dark">Güncelle</button>
+        @*<input type="submit" value="Güncelle" />*@
+        @*<button type="submit" class="btn btn-block btn-dark">Düzenle</button>*@
+        @Html.HiddenFor(a => a.uye_id);
+    }
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿@model proje_a.Models.EntityFramework.kayipTbl
+
+@{
+    ViewBag.Title = "Kayıp Başvurusu Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lost</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    <div class="container" style="width:70%; margin-top:3%">
+        <div class="p-3 mb-2 bg-warning text-black" style="border-radius:30px">
+            <h4 style="text-align:center">Kayıp Başvurunuzu Yapabilirsiniz</h4>
+        </div>
+        <hr />
+        @using (Html.BeginForm("UploadFiles", "kayip", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="p-3 mb-2 bg-info text-white" style="border-radius:10px">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.kayip_ad)
+                            @Html.TextBoxFor(m => m.kayip_ad, "", new { @class = "form-control", @placeholder = "Adı" })
+                            @Html.ValidationMessageFor(m => m.kayip_ad, "", new { @class = "badge badge-danger" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4 col-md-push-4">
+                        @Html.LabelFor(m => m.kayip_turu)
+                        @Html.TextBoxFor(m => m.kayip_turu, "", new { @class = "form-control", @placeholder = "Cinsi" })
+                        @Html.ValidationMessageFor(m => m.kayip_turu, "", new { @class = "badge badge-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        @Html.LabelFor(m => m.kayip_cinsiyet)
+                        @Html.TextBoxFor(m => m.kayip_cinsiyet, "", new { @class = "form-control", @placeholder = "Cinsiyeti" })
+                        @Html.ValidationMessageFor(m => m.kayip_cinsiyet, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="col-xs-6 col-md-4 col-md-push-4">
+                        @Html.LabelFor(m => m.kayip_yas)
+                        @Html.TextBoxFor(m => m.kayip_yas, "", new { @class = "form-control", @placeholder = "Yaşı", @Value = "" })
+                        @Html.ValidationMessageFor(m => m.kayip_yas, "", new { @class = "badge badge-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        @Html.LabelFor(m => m.kayip_renk)
+                        @Html.TextBoxFor(m => m.kayip_renk, "", new { @class = "form-control", @placeholder = "Rengi" })
+                        @Html.ValidationMessageFor(m => m.kayip_renk, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="col-xs-6 col-md-4 col-md-push-4">
+                        @Html.LabelFor(m => m.kayip_il)
+                        @Html.TextBoxFor(m => m.kayip_il, "", new { @class = "form-control", @placeholder = "Kaybolduğu Şehir" })
+                        @Html.ValidationMessageFor(m => m.kayip_il, "", new { @class = "badge badge-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        @Html.LabelFor(m => m.kayip_tarihi)
+                        @*@Html.TextBoxFor(m => m.kayip_tarihi.AuditDate, "{0:dd-MMM-yyyy}", new { @class = "my-style", @readonly = true })*@
+                        @Html.TextBoxFor(m => m.kayip_tarihi, "", new { @class = "form-control", @placeholder = "Kayıp Tarihi(gg/aa/yyyy)", @Type="date" })
+                        @Html.ValidationMessageFor(m => m.kayip_tarihi, "", new { @class = "badge badge-danger" })
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        @Html.LabelFor(m => m.kayip_aciklama)
+                        @Html.TextBoxFor(m => m.kayip_aciklama, "", new { @class = "form-control", @placeholder = "Açıklama", @style = "width:200%   " })
+                        @Html.ValidationMessageFor(m => m.kayip_aciklama, "", new { @class = "badge badge-danger" })
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.resim)
+
+                    <input type="file" id="resim" name="resim" class="btn btn-info" multiple="multiple" />
+                    @Html.ValidationMessageFor(m => m.resim, "", new { @class = "badge badge-danger" })
+                    <p>
+                        Kabul edilebilir dosya türleri: gif, jpg, jpeg, png.
+
+                        Sadece 1 adet fotoğraf yükleyiniz.
+                    </p>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:alert('hi there!')"> <button type="submit" class="btn btn-block btn-dark">Başvuru Yap</button>Burayı tıklayın </a>
+                </div>
+            </div>
+
+
+
+
+        }
+    </div>
+
+</body>
+</html>

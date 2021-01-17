@@ -1,0 +1,55 @@
+﻿@model proje_a.Models.EntityFramework.uyeTbl
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+
+
+<hr />
+
+
+<div class="card-columns">
+    <img class="card-img-top" src="~/image/kullaniciresmi.png" alt="Card image cap" style="border-radius:300px; width:200px">
+    <hr />
+    <div><h1><b>   @@</b><b>@Session["kullanici_adi"]</b></h1></div>
+
+    <div class="card-body">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header"><h4>HAKKINDA</h4></div>
+            <div class="card-body">
+                <h5 class="card-title">İletişim</h5>
+                <hr />
+                <p class="card-text"><b>Ad-Soyad:</b> @Session["uye_ad"] @Session["uye_soyad"]</p>
+                <p class="card-text"><b>Mail:</b> @Session["uye_mail"]</p>
+                <p class="card-text"><b>Telefon:</b>@Session["uye_telno"]</p>
+                <p><a href="/Uye/Guncelle/@Session["uye_id"]" class="btn btn-primary" id="update">Düzenle</a></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+
+@*@foreach (var kayip in Model.uyeList)
+{
+    <tr>
+        <td class="table-warning"><div align="center">#@kayip.kullanici_adi</td>
+        <td class="table-success"><div align="center">@kayip.kayip_il</td>
+        <td><div align="center">@kayip.kayip_ad</td>
+        <td class="table-secondary"><div align="center">@kayip.kayip_tarihi</td>
+        <td class="table-danger"><div align="center">@kayip.kayip_turu</td>
+        <td><img src="~/UploadedFiles/@kayip.image_name" height="80px" width="150px" /></td>
+        <td><a href="/kayip/KayipDetay/@kayip.kayip_id">Devamı için tıklayınız...</a></td>
+        @if (Session["rol"].ToString() == "Admin" || Session["uye_id"].ToString() == kayip.uye_id.ToString())
+        {
+            <td><a href="/kayip/KayipDüzenle/@kayip.kayip_id" class="btn btn-primary" id="update">Düzenle</a></td>
+            <td><a href="/kayip/KayipSil/@kayip.kayip_id" class="btn btn-danger" id="delete">Sil</a></td>
+        }
+    </tr>
+}*@
+
+
+
+

@@ -1,0 +1,45 @@
+﻿@model proje_a.Models.EntityFramework.City
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="masthead" style="background-image: url('../image/map.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Mutluluk Yeri Ekle</h1>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<hr />
+
+@using (Html.BeginForm("YerEkleme", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.Label("Adres:")
+        @Html.TextBox("Title", null, new { @class = "form-control", @placeholder = "Mutluluk Yerinin Adresi" })
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.Label("Enlem(Latitude):")
+            @Html.TextBox("Lat", "", new { @class = "form-control", @placeholder = "Örn:36,152634" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.Label("Boylam(Longitude):")
+            @Html.TextBox("Lng", "", new { @class = "form-control", @placeholder = "Örn:36,152634" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-dark">Ekle</button>
+    </div>
+}
+
+

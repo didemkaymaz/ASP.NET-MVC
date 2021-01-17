@@ -1,0 +1,57 @@
+﻿@model proje_a.Models.EntityFramework.blogTbl
+@{
+    ViewBag.Title = "ArticalAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>*@
+
+</head>
+<body>
+    <br />
+    <h3>Blog yazısı ekleyin</h3>
+    <hr />
+    @using (Html.BeginForm("ArticleAdd", "Blog", FormMethod.Post))
+    {
+        <div class="class=" col-12 col-md-8"">
+            @Html.LabelFor(model => model.article_title)
+            @Html.TextBoxFor(model => model.article_title, "", new { @class = "form-control", @placeholder = "Yazı Başlığı" })
+
+        </div>
+        <br />
+        <div class="class=" col-12 col-md-8"">
+            @*@Html.LabelFor(m => m.artical)*@
+            @*@Html.TextAreaFor(m => m.article, new { @class = "resizer" })*@
+            @Html.TextAreaFor(model => model.article, new { @class = "form-control" })
+            @*@Html.TextArea("Description", "This is dummy description.", new { @class = "form-control" })*@
+        </div>
+        <br />
+
+        <input type="submit" value="Yayınla" class="btn btn-danger" />
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: 'textarea', width: 1000, plugins: "emoticons",
+            toolbar: "emoticons"
+        });
+    </script>
+</body>
+</html>

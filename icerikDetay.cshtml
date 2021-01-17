@@ -1,0 +1,53 @@
+﻿@using proje_a.ViewModel;
+@model BlogViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>icerikDetay</h2>*@
+
+@*<table class="table table-striped table-dark">
+    <font></font>
+    <thead>
+        <font></font>
+        <tr>
+            <font></font>
+            <th><div align="center">Başlık</th>
+            <font></font>
+            <th><div align="center">İçerik</th>
+        </tr>
+        <font></font>
+    </thead>
+    <font></font>
+    <tbody style="color: black">
+        <font></font>
+        @foreach (var blog in Model.icerikDetay)
+        {
+            <tr>
+                <td class="table-warning"><div align="center">@blog.article_title</td>
+                <td class="table-success"><div align="center">@Html.Raw(blog.article)</td>
+
+            </tr>
+        }
+    </tbody>
+    <font></font>
+</table>*@
+<br />
+@foreach (var blog in Model.icerikDetay)
+{
+    <div class="post-heading">
+        <h1>@blog.article_title</h1>
+    
+    </div>
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <p>@Html.Raw(blog.article)</p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+}

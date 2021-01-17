@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="siteDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="blogTbl">
+          <Key>
+            <PropertyRef Name="article_id" />
+          </Key>
+          <Property Name="article_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="article_title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="article" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Lat" Type="float" Nullable="false" />
+          <Property Name="Lng" Type="float" Nullable="false" />
+          <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contactTbl">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="uye_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uye_mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="subject" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="message" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imageTbl">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kayip_id" Type="int" Nullable="false" />
+          <Property Name="image_name" Type="nvarchar" MaxLength="600" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kayipTbl">
+          <Key>
+            <PropertyRef Name="kayip_id" />
+          </Key>
+          <Property Name="kayip_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uye_id" Type="int" Nullable="false" />
+          <Property Name="kayip_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kayip_turu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kayip_cinsiyet" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="kayip_yas" Type="int" Nullable="false" />
+          <Property Name="kayip_renk" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kayip_il" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kayip_tarihi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="resim" Type="nvarchar" MaxLength="700" Nullable="false" />
+          <Property Name="kayip_aciklama" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uyeTbl">
+          <Key>
+            <PropertyRef Name="uye_id" />
+          </Key>
+          <Property Name="uye_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uye_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uye_soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uye_sehir" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uye_telno" Type="int" Nullable="false" />
+          <Property Name="uye_mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uye_sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResetPasswordCode" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_contactTbl_contactTbl">
+          <End Role="contactTbl" Type="Self.contactTbl" Multiplicity="1" />
+          <End Role="contactTbl1" Type="Self.contactTbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="contactTbl">
+              <PropertyRef Name="message_id" />
+            </Principal>
+            <Dependent Role="contactTbl1">
+              <PropertyRef Name="message_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siteDbModelStoreContainer">
+          <EntitySet Name="blogTbl" EntityType="Self.blogTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contactTbl" EntityType="Self.contactTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="imageTbl" EntityType="Self.imageTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kayipTbl" EntityType="Self.kayipTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uyeTbl" EntityType="Self.uyeTbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_contactTbl_contactTbl" Association="Self.FK_contactTbl_contactTbl">
+            <End Role="contactTbl" EntitySet="contactTbl" />
+            <End Role="contactTbl1" EntitySet="contactTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siteDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contactTbl">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="uye_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uye_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="contactTbl1" Relationship="Self.FK_contactTbl_contactTbl" FromRole="contactTbl" ToRole="contactTbl1" />
+          <NavigationProperty Name="contactTbl2" Relationship="Self.FK_contactTbl_contactTbl" FromRole="contactTbl1" ToRole="contactTbl" />
+        </EntityType>
+        <EntityType Name="imageTbl">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kayip_id" Type="Int32" Nullable="false" />
+          <Property Name="image_name" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="uyeTbl">
+          <Key>
+            <PropertyRef Name="uye_id" />
+          </Key>
+          <Property Name="uye_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uye_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uye_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uye_sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uye_telno" Type="Int32" Nullable="false" />
+          <Property Name="uye_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="uye_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_contactTbl_contactTbl">
+          <End Role="contactTbl" Type="Self.contactTbl" Multiplicity="1" />
+          <End Role="contactTbl1" Type="Self.contactTbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="contactTbl">
+              <PropertyRef Name="message_id" />
+            </Principal>
+            <Dependent Role="contactTbl1">
+              <PropertyRef Name="message_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siteDbEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contactTbl" EntityType="Self.contactTbl" />
+          <EntitySet Name="imageTbl" EntityType="Self.imageTbl" />
+          <EntitySet Name="uyeTbl" EntityType="Self.uyeTbl" />
+          <AssociationSet Name="FK_contactTbl_contactTbl" Association="Self.FK_contactTbl_contactTbl">
+            <End Role="contactTbl" EntitySet="contactTbl" />
+            <End Role="contactTbl1" EntitySet="contactTbl" />
+          </AssociationSet>
+          <EntitySet Name="kayipTbl" EntityType="siteDbModel.kayipTbl" />
+          <EntitySet Name="City" EntityType="siteDbModel.City" />
+          <EntitySet Name="blogTbl" EntityType="siteDbModel.blogTbl" />
+        </EntityContainer>
+        <EntityType Name="kayipTbl">
+          <Key>
+            <PropertyRef Name="kayip_id" />
+          </Key>
+          <Property Name="kayip_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uye_id" Type="Int32" Nullable="false" />
+          <Property Name="kayip_ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_turu" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_cinsiyet" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_yas" Type="Int32" Nullable="false" />
+          <Property Name="kayip_renk" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_il" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_tarihi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="resim" Type="String" Nullable="false" MaxLength="700" FixedLength="false" Unicode="true" />
+          <Property Name="kayip_aciklama" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="Double" Nullable="false" />
+          <Property Name="Lng" Type="Double" Nullable="false" />
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="blogTbl">
+          <Key>
+            <PropertyRef Name="article_id" />
+          </Key>
+          <Property Name="article_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="article_title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="article" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="siteDbModelStoreContainer" CdmEntityContainer="siteDbEntities6">
+          <EntitySetMapping Name="contactTbl">
+            <EntityTypeMapping TypeName="siteDbModel.contactTbl">
+              <MappingFragment StoreEntitySet="contactTbl">
+                <ScalarProperty Name="uye_ad" ColumnName="uye_ad" />
+                <ScalarProperty Name="uye_mail" ColumnName="uye_mail" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imageTbl">
+            <EntityTypeMapping TypeName="siteDbModel.imageTbl">
+              <MappingFragment StoreEntitySet="imageTbl">
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="kayip_id" ColumnName="kayip_id" />
+                <ScalarProperty Name="image_name" ColumnName="image_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uyeTbl">
+            <EntityTypeMapping TypeName="siteDbModel.uyeTbl">
+              <MappingFragment StoreEntitySet="uyeTbl">
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
+                <ScalarProperty Name="uye_id" ColumnName="uye_id" />
+                <ScalarProperty Name="uye_ad" ColumnName="uye_ad" />
+                <ScalarProperty Name="uye_soyad" ColumnName="uye_soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="uye_sehir" ColumnName="uye_sehir" />
+                <ScalarProperty Name="uye_telno" ColumnName="uye_telno" />
+                <ScalarProperty Name="uye_mail" ColumnName="uye_mail" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="uye_sifre" ColumnName="uye_sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kayipTbl">
+            <EntityTypeMapping TypeName="siteDbModel.kayipTbl">
+              <MappingFragment StoreEntitySet="kayipTbl">
+                <ScalarProperty Name="kayip_aciklama" ColumnName="kayip_aciklama" />
+                <ScalarProperty Name="resim" ColumnName="resim" />
+                <ScalarProperty Name="kayip_tarihi" ColumnName="kayip_tarihi" />
+                <ScalarProperty Name="kayip_il" ColumnName="kayip_il" />
+                <ScalarProperty Name="kayip_renk" ColumnName="kayip_renk" />
+                <ScalarProperty Name="kayip_yas" ColumnName="kayip_yas" />
+                <ScalarProperty Name="kayip_cinsiyet" ColumnName="kayip_cinsiyet" />
+                <ScalarProperty Name="kayip_turu" ColumnName="kayip_turu" />
+                <ScalarProperty Name="kayip_ad" ColumnName="kayip_ad" />
+                <ScalarProperty Name="uye_id" ColumnName="uye_id" />
+                <ScalarProperty Name="kayip_id" ColumnName="kayip_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="siteDbModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blogTbl">
+            <EntityTypeMapping TypeName="siteDbModel.blogTbl">
+              <MappingFragment StoreEntitySet="blogTbl">
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="article_title" ColumnName="article_title" />
+                <ScalarProperty Name="article_id" ColumnName="article_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

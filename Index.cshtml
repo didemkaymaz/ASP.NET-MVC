@@ -1,0 +1,97 @@
+﻿@using proje_a.ViewModel;
+@model kayipTblViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<header class="masthead" style="background-image: url('../image/kyp.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Gördünüğüz zaman bizimle iletişime geçiniz</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<table class="table table-hover table-bordered" style="width:100%">
+    <thead  class="thead-dark">
+        <tr>
+            <th><div align="center">İlan Veren</th>
+            <th><div align="center">İl</th>
+            <th><div align="center">Adı</th>
+            <th><div align="center">Kaybolma Tarihi</th>
+            <th><div align="center">Cinsi</th>
+            <th><div align="center">Resim</th>
+            <th width="25%">
+                @using (Html.BeginForm("Arama", "kayip", FormMethod.Post))
+                {
+                    <form class="form-inline">
+                        <div class="form-group mb-0 float-lg-left">
+                            @Html.TextBox("name", null, new { @class = "form-control", placeholder = "Kayıp Ara(Şehir veya cins" })
+                        </div>
+                        @*@<input class="form-control mr-sm-2" type="search" placeholder="Konu Ara" aria-label="Search" id="searchName">@*@
+                        <button class="btn btn-warning float-lg-right" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+</svg></button>
+                    </form>
+                }
+                </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kayip in Model.kayipList)
+        {
+            <tr>
+                <td  class="table-warning"><div align="center">#@kayip.kullanici_adi</td>
+                <td class="table-success"><div align="center">@kayip.kayip_il</td>
+                <td><div align="center">@kayip.kayip_ad</td>
+                <td class="table-secondary"><div align="center">@kayip.kayip_tarihi</td>
+                <td class="table-danger"><div align="center">@kayip.kayip_turu</td>
+                <td><img src="~/UploadedFiles/@kayip.image_name" height="80px" width="150px" /></td>
+                <td><a href="/kayip/KayipDetay/@kayip.kayip_id">Devamı için tıklayınız...</a></td>
+                @if (Session["rol"].ToString() == "Admin" || Session["uye_id"].ToString() == kayip.uye_id.ToString())
+                {
+                    <td><a href="/kayip/KayipDüzenle/@kayip.kayip_id" class="btn btn-primary" id="update">Düzenle</a></td>
+                    <td><a href="/kayip/KayipSil/@kayip.kayip_id" class="btn btn-danger" id="delete">Sil</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@*<script>
+
+        var $ = require('jquery'); <font></font>
+        var dt = require('datatables.net')(); <font></font>
+
+        $(document).ready(function () {
+            <font></font>
+            $('#kayipTbl').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                }
+            }
+
+            ); <font></font>
+        }); <font></font>
+
+    } );
+
+        var table = $('#example_filter').DataTable();
+
+        // #myInput is a <input type="text"> element
+        $('#kayipTbl').on('keyup', function () {
+            table.search(this.value).draw();
+        });
+    </script>*@
+

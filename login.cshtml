@@ -1,0 +1,109 @@
+﻿@model proje_a.Models.EntityFramework.uyeTbl
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Giriş</title>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    </head>
+    <body style="background-image:url(../image/arkaplanblur.jpeg); background-size: 100%">
+
+        <div style="background-color: black;
+            opacity: 0.7;
+            margin-top: 5%">
+            <div align="center">
+                <p><h1 style="color:honeydew"></h1> <img src="~/image/logo.png" width="400px" height="100px" /></p>
+            </div>
+        </div>
+        <hr />
+        <div class="container" style="height:410px; width:40%; background-color:black;  border-radius:40px;opacity: 0.8;">
+            <h2 style="text-align:center; color:blanchedalmond">Giriş</h2>
+            <hr />
+
+            @using (Html.BeginForm("login", "uye", FormMethod.Post))
+            {
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.uye_mail)
+                    @Html.TextBoxFor(m => m.uye_mail, new { @class = "form-control", placeholder = "E-mail" })
+                    @Html.ValidationMessageFor(m => m.uye_mail, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.uye_sifre)
+                    @Html.TextBoxFor(m => m.uye_sifre, new { @class = "form-control", placeholder = "Şifre", @type = "Password" })
+                    @Html.ValidationMessageFor(m => m.uye_sifre, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-block btn-danger" style="margin-bottom:5%">
+                    Giriş Yap
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z" />
+                    </svg>
+                </button>
+                <span style="color:red;">@ViewBag.Mesaj</span>
+            }
+            @using (Html.BeginForm("uyelik", "uye", FormMethod.Get))
+            {
+                <button type="submit" class="btn btn-block btn-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                    </svg>
+                    Bize Katıl
+                </button>
+            } 
+            <br />
+        <a href="/Uye/ForgotPassword">
+            <button type="submit" class="btn btn-block btn-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-diamond-fill" viewBox="0 0 16 16">
+                    <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098L9.05.435zM5.495 6.033a.237.237 0 0 1-.24-.247C5.35 4.091 6.737 3.5 8.005 3.5c1.396 0 2.672.73 2.672 2.24 0 1.08-.635 1.594-1.244 2.057-.737.559-1.01.768-1.01 1.486v.105a.25.25 0 0 1-.25.25h-.81a.25.25 0 0 1-.25-.246l-.004-.217c-.038-.927.495-1.498 1.168-1.987.59-.444.965-.736.965-1.371 0-.825-.628-1.168-1.314-1.168-.803 0-1.253.478-1.342 1.134-.018.137-.128.25-.266.25h-.825zm2.325 6.443c-.584 0-1.009-.394-1.009-.927 0-.552.425-.94 1.01-.94.609 0 1.028.388 1.028.94 0 .533-.42.927-1.029.927z" />
+                </svg>
+                Şifremi unuttum
+            </button>
+        </a>
+            </div>
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
